@@ -1,0 +1,5 @@
+---
+# vars file for wordpress
+MYSQL_ROOT_PASSWORD=wordpress2019
+MYSQL_USER=wordpress
+MYSQL_PASSWORD=wordpress2020

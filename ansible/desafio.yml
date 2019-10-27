@@ -1,0 +1,5 @@
+---
+ - hosts: desafio 
+   tasks:
+   roles:
+     - docker
