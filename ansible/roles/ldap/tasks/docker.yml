@@ -1,0 +1,27 @@
+---
+- name: Run docker container
+  become: yes
+  docker_container:
+    name: ldap
+    image: "{{ LDAP_DOCKER_IMAGE }}"
+    state: started
+    pull: yes
+    restart: yes
+    restart_policy: always
+    ports:
+      - "{{ LDAP_DOCKER_PORT }}"
+    recreate: yes
+    env:
+      SLAPD_PASSWORD: "{{ SLAPD_PASSWORD_VAR }}"
+      SLAPD_ADDITIONAL_SCHEMAS: "{{ SLAPD_ADDITIONAL_SCHEMAS_VAR }}"
+      SLAPD_ADDITIONAL_MODULES: "{{ SLAPD_ADDITIONAL_MODULES_VAR }}"
+      SLAPD_DOMAIN: "{{ SLAPD_DOMAIN_VAR }}"
+    networks:
+      - name: rz2
+  until: ldap_docker | success
+  register: ldap_docker
+  retries: 10
+  delay: 2
+  tags: 
+      docker_ldap
+

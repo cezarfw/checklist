@@ -1,0 +1,8 @@
+---
+# vars file for ldap
+LDAP_DOCKER_IMAGE: cezarfw/openldap-desafio-rz2
+LDAP_DOCKER_PORT: 389:389
+SLAPD_PASSWORD_VAR: desafiorz2
+SLAPD_ADDITIONAL_SCHEMAS_VAR: ppolicy
+SLAPD_ADDITIONAL_MODULES_VAR: ppolicy
+SLAPD_DOMAIN_VAR: ldap.cezaraugustoroggia.com.br

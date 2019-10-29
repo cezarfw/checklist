@@ -1,5 +1,7 @@
 ---
  - hosts: desafio 
-   tasks:
    roles:
      - docker
+     - wordpress
+     - ldap
+     - phpldapadmin

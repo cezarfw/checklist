@@ -1,5 +1,6 @@
 ---
-# vars file for wordpress
-MYSQL_ROOT_PASSWORD=wordpress2019
-MYSQL_USER=wordpress
-MYSQL_PASSWORD=wordpress2020
+MYSQL_USER: wordpress
+MYSQL_PASSWORD_USER: wordpress2020
+WORDPRESS_DB: wordpress
+WORDPRESS_HOST: 'db:3306'
+MYSQL_PASSWORD_ROOT: wordpress2020

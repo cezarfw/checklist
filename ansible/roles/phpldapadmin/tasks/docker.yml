@@ -1,0 +1,23 @@
+---
+
+- name: Run docker container phpldapadmin
+  become: yes
+  docker_container:
+    name: phpldapadmin
+    image: "{{ PHPLDAPADMIN_DOCKER_IMAGE }}"
+    state: started
+    pull: yes
+    restart: yes
+    restart_policy: always
+    ports:
+      - "{{ PHPLDAPADMIN_DOCKER_PORT }}"
+    recreate: yes
+    env:
+      PHPLDAPADMIN_LDAP_HOSTS: "{{ PHPLDAPADMIN_LDAP_HOSTS_VAR }}"
+      PHPLDAPADMIN_HTTPS: 'false'
+    networks:
+      - name: rz2
+  retries: 10
+  delay: 2
+  tags:
+    - docker_phpldapadmin

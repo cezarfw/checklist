@@ -1,3 +1,6 @@
 
 [desafio]
-192.168.0.16
+3.219.86.143
+
+[desafio:vars]
+ansible_python_interpreter=/usr/bin/python3

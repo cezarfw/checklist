@@ -1,0 +1,10 @@
+---
+ - name: Copiando yml compose para /tmp
+   template:
+    src: 'docker-compose.yml.j2'
+    dest: '/tmp/docker-compose.yml'
+
+ - name: Executa o docker-compose
+   command: docker-compose -f /tmp/docker-compose.yml up -d
+   ignore_errors: True
+   become: yes

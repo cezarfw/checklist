@@ -1,0 +1,6 @@
+---
+# vars file for phpldapadmin
+PHPLDAPADMIN_DOCKER_IMAGE: 'osixia/phpldapadmin:0.9.0'
+PHPLDAPADMIN_DOCKER_PORT: '8080:80'
+PHPLDAPADMIN_HTTPS_VAR: 'false'
+PHPLDAPADMIN_LDAP_HOSTS_VAR: ldap
