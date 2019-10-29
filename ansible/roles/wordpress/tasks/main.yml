@@ -1,3 +1,8 @@
 ---
+
+- name: Create a network RZ2
+  docker_network:
+    name: rz2
+
 - include: wordpress.yml
 
