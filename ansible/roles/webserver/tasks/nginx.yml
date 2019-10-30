@@ -1,0 +1,52 @@
+---
+ - name: Instala NGINX
+   yum:
+     name: nginx
+     state: latest
+
+
+ - name: Remover default nginx
+   file:
+     path: '{{ item }}'
+     state: absent
+   with_items: 
+     - /etc/nginx/sites-enabled/default 
+     - /var/www/html/
+   become: yes
+   tags: 
+     - remove-file-nginx
+
+ - name: criar diretorio default nginx
+   file:
+     path: /var/www/html
+     state: directory
+   become: yes
+
+ - name: Copia o arquivo de configuração do proxy reverso
+   copy:
+     src: '{{ item.src }}'
+     dest: '{{ item.dest }}'
+   with_items:
+     - { src: files/ldap, dest: /etc/nginx/sites-available/ldap.cezaraugustoroggia.com.br }
+     - { src: files/wordpress, dest: /etc/nginx/sites-available/wordpress.cezaraugustoroggia.com.br }
+     - { src: files/default-indexhtml , dest: /var/www/html/index.html }
+   tags:
+     - copy-file-proxy
+
+ - name: Criando links simbolicos dos configs
+   file:
+     src: '{{ item.src }}'
+     dest: '{{ item.dest }}'
+     state: link
+   with_items:
+     - { src: /etc/nginx/sites-available/ldap.cezaraugustoroggia.com.br , dest: /etc/nginx/sites-enabled/ldap.cezaraugustoroggia.com.br }
+     - { src: /etc/nginx/sites-available/wordpress.cezaraugustoroggia.com.br , dest: /etc/nginx/sites-enabled/wordpress.cezaraugustoroggia.com.br }  
+
+
+#=============================  INICIA SERVICO DE PROXY REVERSO ==========================#
+
+ - service:
+     name: nginx
+     state: started
+     enabled: yes
+     daemon_reload: yes
