@@ -17,6 +17,7 @@
       PHPLDAPADMIN_HTTPS: 'false'
     networks:
       - name: rz2
+    purge_networks: yes
   retries: 10
   delay: 2
   tags:

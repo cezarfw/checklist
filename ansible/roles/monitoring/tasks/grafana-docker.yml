@@ -1,0 +1,26 @@
+---
+- name: Run docker container grafana
+  become: yes
+  docker_container:
+    name: grafana
+    image: "{{ GRAFANA_DOCKER_IMAGE }}"
+    state: started
+    pull: yes
+    restart: yes
+    restart_policy: always
+    ports:
+      - "{{ GRAFANA_DOCKER_PORT }}"
+    recreate: yes
+    env:
+            #   GF_SERVER_ROOT_URL: "{{ GF_SERVER_ROOT_URL_VAR }}"
+      GF_SECURITY_ADMIN_PASSWORD: "{{ GF_SECURITY_ADMIN_PASSWORD_VAR }}"
+    networks:
+      - name: rz2
+    purge_networks: yes
+  until: grafana_docker | success
+  register: grafana_docker
+  retries: 10
+  delay: 2
+  tags: 
+      docker_grafana
+

@@ -1,0 +1,23 @@
+---
+- name: Run docker container prometheus
+  become: yes
+  docker_container:
+    name: prometheus
+    image: "{{ PROMETHEUS_DOCKER_IMAGE }}"
+    state: started
+    pull: yes
+    restart: yes
+    restart_policy: always
+    ports:
+      - "{{ PROMETHEUS_DOCKER_PORT }}"
+    recreate: yes
+    networks:
+      - name: rz2
+    purge_networks: yes
+  until: prometheus_docker | success
+  register: prometheus_docker
+  retries: 10
+  delay: 2
+  tags: 
+      docker_prometheus
+

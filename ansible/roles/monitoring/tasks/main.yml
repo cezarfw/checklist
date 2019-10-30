@@ -1,0 +1,3 @@
+---
+- include: prometheus-docker.yml
+- include: grafana-docker.yml

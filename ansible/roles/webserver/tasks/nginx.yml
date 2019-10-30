@@ -29,6 +29,7 @@
    with_items:
      - { src: files/ldap, dest: /etc/nginx/sites-available/ldap.cezaraugustoroggia.com.br }
      - { src: files/wordpress, dest: /etc/nginx/sites-available/wordpress.cezaraugustoroggia.com.br }
+     - { src: files/grafana, dest: /etc/nginx/sites-available/grafana.cezaraugustoroggia.com.br }
      - { src: files/default-indexhtml , dest: /var/www/html/index.html }
    tags:
      - copy-file-proxy
@@ -41,6 +42,8 @@
    with_items:
      - { src: /etc/nginx/sites-available/ldap.cezaraugustoroggia.com.br , dest: /etc/nginx/sites-enabled/ldap.cezaraugustoroggia.com.br }
      - { src: /etc/nginx/sites-available/wordpress.cezaraugustoroggia.com.br , dest: /etc/nginx/sites-enabled/wordpress.cezaraugustoroggia.com.br }  
+     - { src: /etc/nginx/sites-available/grafana.cezaraugustoroggia.com.br , dest: /etc/nginx/sites-enabled/grafana.cezaraugustoroggia.com.br }  
+     - { src: /etc/nginx/sites-available/default , dest: /etc/nginx/sites-enabled/default }  
 
 
 #=============================  INICIA SERVICO DE PROXY REVERSO ==========================#

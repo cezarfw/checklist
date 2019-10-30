@@ -1,0 +1,8 @@
+---
+# vars file for monitoring
+GF_SERVER_ROOT_URL_VAR: http://grafana.cezaraugustoroggia.com.br
+GF_SECURITY_ADMIN_PASSWORD_VAR: desafiorz2
+GRAFANA_DOCKER_IMAGE: grafana/grafana
+GRAFANA_DOCKER_PORT: 9100:3000 
+PROMETHEUS_DOCKER_IMAGE: prom/prometheus
+PROMETHEUS_DOCKER_PORT: 127.0.0.1:9090:9090
